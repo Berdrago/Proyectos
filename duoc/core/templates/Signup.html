@@ -1,0 +1,161 @@
+
+{% extends 'home.html' %}
+
+{% block titulo %}
+{%  endblock %}
+
+{% block contenido%}
+      <div id="container" >
+          <div class="container" style="background-color: white;width: 100%; height:100%;">
+            <div class="row justify-content-center " >
+              <div class="col-4">  
+                  <img class="img" src="../static/img/user-signin.png" width="100" height="100" alt="Imagen de usuario " >
+                  <div class="container">
+                      <form action="{% url 'Registrando' %}" method="POST" id="Formulario2">
+                        {% csrf_token %} 
+                        <div class="form-group">
+                          <label for="nombre">Usuario</label> 
+                          <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Ingresar usuario" required >
+                          <div id="mensaje1" class="alert alert-danger" role="alert">Ingresar nombre de usuario</div>
+                          <div id="mensaje10" class="alert alert-danger" role="alert">El nombre de usuario esta en uso </div>
+                        </div>
+                        <div class="form-group">
+                          <label for="email">Correo</label> 
+                          <input type="email" class="form-control" id="email" name="Email" placeholder="Ingresar correo electronico" required >
+                          <div id="mensaje2" class="alert alert-danger" role="alert">Ingresar Email valido</div>
+                          <div id="mensaje7" class="alert alert-danger" role="alert">El formato de email es invalido</div>
+                          <div id="mensaje11" class="alert alert-danger" role="alert">El email ingresado ya esta uso  </div>
+                        </div>
+                        <div class="form-group">
+                          <label for="clave">Clave</label> 
+                          <input type="password" class="form-control" id="clave" name="Clave" placeholder="Ingresar clave" required >
+                          <div id="mensaje3" class="alert alert-danger" role="alert">Ingresar clave</div>
+                        </div>
+                        <div class="form-group">
+                          <label for="clave">Clave</label> 
+                          <input type="password" class="form-control" id="clave2" name="password2" placeholder="Repetir clave" required >
+                          <div id="mensaje4" class="alert alert-danger" role="alert">Repetir clave</div>
+                          <div id="mensaje6" class="alert alert-danger" role="alert">Las claves no coinciden</div>                  
+                        </div>
+                        <div class="centrado"> <input type="reset"class="btn btn-danger" style="margin: 10px;width: 60%; ;height: 60%;" id="limpiar" value="Limpiar"> </div>
+                        <div class="centrado"> <input type="submit"class="btn btn-success" style="margin: 10px;width: 60%; ;height: 60%;" id="registrar" value="Registrar"> </div>
+                        <h6 class="centrado"  > <a class="nombres"  href="{% url 'Signin' %}">Volver</a> </h6>
+                      </form>
+                    </div>
+                  </div>  
+              </div>
+            </div>
+    
+{%  endblock %}
+{% block scripts  %}
+
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $('#mensaje1').hide();
+        $('#mensaje2').hide();
+        $('#mensaje3').hide();
+        $('#mensaje4').hide();
+        $("#mensaje6").hide();
+        $('#mensaje7').hide();
+        $('#mensaje11').hide();
+        $('#mensaje10').hide();
+
+
+        console.log("jquery")
+        $('#limpiar').click(function(){
+            $('#mensaje1').hide();
+            $('#mensaje2').hide();
+            $('#mensaje3').hide();
+            $('#mensaje4').hide();
+            $("#mensaje6").hide();
+            $('#mensaje7').hide();
+            $('#mensaje11').hide();
+            $('#mensaje10').hide();
+        });
+        $("#validar").click(function(){
+          var registrar = true;
+          var validar1 = false;
+          var validar2 = false;
+          var validar3 = false;
+          var validar4 = false;
+          var validar5 = false;
+          var validar6 = false;
+          var validar7 = false;
+          var validar8 = false;
+          
+          var usuario = $('#usuario').val().trim();
+          var email = $('#email').val().trim();
+          var clave = $('#clave').val().trim();
+          var clave2 = $('#clave2').val().trim();
+          
+          if(!(usuario.length<=16 && usuario.length >=4 )) {
+            $('#mensaje1').show();
+            
+            validar2 = false;
+            
+          }else{
+            $('#mensaje1').hide();
+            
+            validar2 = true;
+
+          }
+          
+          function validateCorreo($email) {
+            var correoReg = /^([\w-.]+@([\w-]+.)+[\w-]{2,4})?$/;
+            return correoReg.test( $email ); 
+          }
+          console.log("Correo : ",validateCorreo(email));
+          if( email.length != 0 && validateCorreo(email)){
+            $('#mensaje2').hide();
+            validar3 = true;
+          }else{
+            $('#mensaje2').show();
+            
+            validar3 = false;
+            
+          }
+
+
+          if(!(clave.length<=16 && clave.length >=8)) {
+            $('#mensaje3').show();
+            
+            validar6 = false;
+            
+          }else{
+            $('#mensaje3').hide();
+            
+            validar6 = true;
+            
+          }
+          if(!(clave2.length<=16 && clave2.length >=8)) {
+            $('#mensaje4').show();
+            
+            validar7 = false;
+            
+          }else{
+            $('#mensaje4').hide();
+            
+            validar7 = true;
+          }
+          if(!(clave == clave2)){
+            $("#mensaje6").show();
+            
+            validar8 = false;
+          }else{
+            $("#mensaje6").hide();
+            
+            validar8 = true;
+          }
+          
+        });
+        $('#registrar').click(function(){
+          
+          var usuario = $('#usuario').val().trim();
+          var email = $('#email').val().trim();
+          var clave2 = $('#clave2').val().trim();
+        });
+      });   
+  </script>
+{%  endblock %}
+
+

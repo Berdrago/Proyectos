@@ -1,0 +1,29 @@
+{% extends 'home.html' %}
+
+{% block titulo %}
+{%  endblock %}
+
+{% block contenido%}
+<div class="container">
+    <h1 class="centrado" style="color: white;margin-top: 20px;" > Nuevos </h1>
+      <div class="row" >
+        {% for producto in productos %}
+          <div class="col-3">
+            <div class="card" style="width: 100%; margin-bottom: 20px;  ">  
+              <a href="#">
+                <img  src="/static/media/{{producto.imagen}}"  class="card-img-top"  alt="Producto"> 
+              </a> 
+              <div class="card-body" style="color:black;">
+                <p class="card-text text-center"> Nombre de producto : {{producto.nombreProducto}}</p>
+                <p class="card-text text-center" > Nobre del Fabricante:{{producto.fabricante}}</p>
+                <p class="card-text text-center" > Precio del producto :{{producto.precio}}</p>
+                <p class="card-text text-center" > Stock de producto :{{producto.stock}} </p> 
+              </div>
+            </div>
+          </div>
+       {% endfor %}
+      </div>   
+
+
+
+{%  endblock %}

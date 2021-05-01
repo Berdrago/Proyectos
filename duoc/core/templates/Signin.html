@@ -1,0 +1,81 @@
+
+{% extends 'home.html' %}
+
+{% block titulo %}
+{%  endblock %}
+
+{% block contenido%}
+<div id="container" >
+    <div class="container"  style="background-color: white;width: 100%; height:100%;">
+      <div class="row justify-content-center " >
+      <div class="col-4">   
+          <img class="img" src="../static/img/user-signin.png" width="100" height="100" alt="Imagen de usuario " >
+          <div class="container" >
+              <form  action="{% url 'Logeando'%}" method="POST" id="Formulario">
+                {% csrf_token %}
+                <div class="form-group">
+                  <label for="nombre">Nombre de usuario</label> 
+                  <input type="text" class="form-control" id="usuario" name="Usuario" placeholder="Ingresar usuario" required >
+                  <div id="mensaje1" class="alert alert-danger" role="alert">Ingresar nombre de usuario</div>
+                </div>
+                <div class="form-group">
+                  <label for="nombre">Clave</label> 
+                  <input type="password" class="form-control" id="clave" name="password" placeholder="Ingresar clave" required>
+                  <div id="mensaje2" class="alert alert-danger" role="alert">Ingresar clave</div>
+                </div>
+                <div class="centrado"> <input type="submit" class="btn btn-success"style="margin: 10px;width: 60%; ;height: 60%;"  id="login"  value="Login"  >  </div>
+                <div class="centrado"> <input type="reset"class="btn btn-danger" style="margin: 10px;width: 60%; ;height: 60%;" id="limpiar" value="Limpiar"  > </div>
+                <h1 class="centrado" > <a class="nombres"  href="{% url 'Signup' %}"> ¿Aun sin cuenta ? </a> </h1>
+              </form>
+          </div>
+      </div>
+  </div>
+</div>
+</div>
+
+
+{%  endblock %}
+{% block scripts  %}
+<script type="text/Javascript">
+    $(document).ready(function(){
+      $('#mensaje1').hide();
+      $('#mensaje2').hide();
+      $('#limpiar').click(function(){
+          $('#mensaje1').hide();
+          $('#mensaje2').hide();
+      });
+      $('#login').click(function(){
+        
+        var usuario = $('#usuario').val().trim();
+        var clave   = $('#clave').val().trim();
+        if(usuario.length === 0){
+          $('#mensaje1').show();
+        }
+        if(usuario.length >= 4){
+          $('#mensaje1').show();
+        }
+        if(!(usuario.length<=16 && usuario.length >=4 )) {
+          $('#mensaje1').show();
+          
+        }else{
+          $('#mensaje1').hide();
+        }
+        if(clave.length === 0){
+          $('#mensaje2').show();
+        }
+        if(usuario.length >= 8){
+          $('#mensaje2').show();
+        }
+        if(!(clave.length >=8 && clave.length <=16)) {
+          $('#mensaje2').show();
+          
+        }
+        else{
+          $('#mensaje2').hide();
+        }
+      });
+    });
+
+</script>
+{%  endblock %}
+

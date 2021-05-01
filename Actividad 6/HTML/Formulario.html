@@ -1,120 +1,119 @@
 <!doctype html>
 <html lang="en">
   <head>
+    
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../CSS/css.css">
+
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
     <title>Hello, world!</title>
-  </head>   
+  </head>
   <body>
-    <h1>Formulario</h1>
-    <nav class="navbar navbar-dark bg-dark">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="Formulario.html"><img src="https://media2.giphy.com/media/MaaxkQCxt06Dgjzehl/giphy.gif" width="80" height="80"  alt="Logo"></a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="Formulario.html">Formulario</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="Formulario2.html">Formulario2</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Mascotas
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Perros</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Gatos</a></li>
-          </ul>
-        </li>
-    </div>
-  </div>
-</nav>
-<form class="row g-3">
-    <div class="col-md-4">
-      <label for="validationServer01" class="form-label">Nombre </label>
-      <input type="text" class="form-control is-valid" id="validationServer01" placeholder="Gary monasterio" required>
-      <div class="valid-feedback">
-        Looks good!
+    <div class="container" style="background-color: white;width: 30%; height:0%;">
+    <h1 class="centrado">Formulario ONG </h1>
+    <form class="row g-3 needs-validation" novalidate>
+      <div class="form-group">
+        <label for="nombre">Nombre completo</label> 
+        <input type="text" class="form-control" id="nombre" name="nombre" placeholder=" Ingresar nombre completo" required >
+        <div id="mensaje1" class="alert alert-danger" role="alert">Nombre no puede ser nulo </div>
       </div>
-    </div>
-    <div class="col-md-4">
-      <label for="validationServer02" class="form-label">Rut/Pasaporte</label>
-      <input type="text" class="form-control is-valid" id="validationServer02" placeholder="20497490k" required>
-      <div class="valid-feedback">
-        Looks good!
+      <div class="form-group">
+        <label for="Email">Email</label> 
+        <input type="email" class="form-control" id="email" name="email" placeholder=" x56dragon@gmail.com" required >
+        <div id="mensaje2" class="alert alert-danger" role="alert">email no puede ser nulo </div>
       </div>
-    </div>
-    <div class="col-md-4">
-      <label for="validationServerUsername" class="form-label">Correo Electronico</label>
-      <div class="input-group has-validation">
-        <span class="input-group-text" id="inputGroupPrepend3">@</span>
-        <input type="text" class="form-control is-invalid" id="validationServerUsername" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" placeholder="ga.monasterio@alumnos.duoc.cl"required>
-        <div id="validationServerUsernameFeedback" class="invalid-feedback">
-            Looks good!
+      <div class="form-group">
+        <label for="rut">Rut</label> 
+        <input type="text" class="form-control" id="rut" name="rut" placeholder=" Ingresar rut sin puntos ni guion " required >
+        <div id="mensaje3" class="alert alert-danger" role="alert">Solo pude contar con 11 caracteres </div>
+      </div>
+      <div class="form-group">
+        <label for="telefono">Numero de telefono</label> 
+        <input type="text" class="form-control" id="telefono" name="telefono" placeholder=" Ingresar numero de telefono " required >
+      </div>
+      <div class="form-group">
+        <label for="validationCustom04" class="form-label"> Region de recidencia</label>
+        <select class="form-select" id="validationCustom04" required>
+        <option selected disabled value="">Ingresar tu region de recidencia</option>
+          <option>Región de Arica y Parinacota</option>
+          <option>Región de Tarapacá</option>
+          <option>Región de Antofagasta</option>
+          <option>Región de Atacama</option>
+          <option>Región de Coquimbo</option>
+          <option>Región de Valparaíso</option>
+          <option>Región Metropolitana de Santiago</option>
+          <option>Región del Libertador General Bernardo O’Higgins</option>
+          <option>Región del Maule</option>
+          <option>Región del Ñuble</option>
+          <option>Región del Biobío</option>
+          <option>Región de Arica y Parinacota</option>
+          <option>Región de La Araucanía</option>
+          <option>Región de Los Ríos</option>
+          <option>Región de Los Lagos</option>
+          <option>Región de Aysén del General Carlos Ibáñez del Campo</option>
+        </select>
+        <div class="invalid-feedback">
+          Region invalida 
         </div>
       </div>
-    </div>
-    <div class="col-md-6">
-      <label for="validationServer03" class="form-label">Numero de telefono (Opcional)</label>
-      <input type="text" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" placeholder="954583715"required>
-      <div id="validationServer03Feedback" class="invalid-feedback">
-        Looks good!
+      <div class="mb-3">
+        <label for="texto" class="form-label">Comentario</label>
+        <textarea class="form-control" id="texto" rows="3" placeholder=" Ingresar un comentario" ></textarea>
+        <div id="mensaje4" class="alert alert-danger" role="alert">Solo puede ingresar maximo 50 caracteres</div>
       </div>
-    </div>
-    <div class="col-md-3">
-      <label for="validationServer04" class="form-label">Ciudad de Recidencia</label>
-      <select class="form-select is-invalid" id="validationServer04" aria-describedby="validationServer04Feedback" required>
-        <option selected disabled value="">Seleccione</option>
-        <option>Colina</option>
-      </select>
-      <div id="validationServer04Feedback" class="invalid-feedback">
-        Looks good!
-      </div>
-    </div>
-    <form class="was-validated">
-        <div class="mb-3">
-          <label for="validationTextarea" class="form-label">Comentario</label>
-          <textarea class="form-control is-invalid" id="validationTextarea" placeholder="Por favor escriba un comentario de como le ha parecido la pagina." required></textarea>
-          <div class="invalid-feedback">
-        </div>
-    </div>
+      <div class="centrado"> <input type="submit" class="btn btn-success" style="margin: 10px;width: 60%; ;height: 60%;"  id="Enviar" value="Enviar">  </div>
+      <div class="centrado"> <input type="reset"class="btn btn-danger" style="margin: 10px;width: 60%; ;height: 60%;" id="limpiar" value="Limpiar"> </div>
+       </div>
     </form>
-    </div>
-    <div class="col-12">
-    <div class="form-check">
-        <input class="form-check-input is-invalid" type="checkbox" value="" id="invalidCheck3" aria-describedby="invalidCheck3Feedback" required>
-        <label class="form-check-label" for="invalidCheck3">
-         Accepta los terminos y condicciones 
-        </label>
-        <div id="invalidCheck3Feedback" class="invalid-feedback">
-    
-      </div>
-    </div>
-    <div class="col-12" id="error" class="alert alert-danger" role="alert"  >
-      <button class="btn btn-primary" type="submit">Enviar</button>
-      <button type="button" class="btn btn-success">Limpiar</button>
-    </div>
-  </form>
+  </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('#mensaje1').hide();
+        $('#mensaje2').hide();
+        $('#mensaje3').hide();
+        $('#mensaje4').hide();
+        $('#limpiar').click(function(){
+          $('#mensaje1').hide();
+          $('#mensaje2').hide();
+          $('#mensaje3').hide();
+          $('#mensaje4').hide();
+          });
+        $("#Enviar").click(function(){
+          console.log("jquery")
+          event.preventDefault();
+          var nombre   = $('#nombre').val().trim();
+          var email    = $('#email').val().trim();
+          var rut      = $('#rut').val().trim();
+          var texto    = $('#texto').val().trim();
 
-  <script type ="text"></script>
+          if(!(nombre.length<=25 && nombre.length >=1 )) {
+            $('#mensaje1').show();
+          }else{
+            $('#mensaje1').hide();
+          }
+          if(!(email.length && email.length >=1  )){
+            $('#mensaje2').show();
+          }else{
+            $('#mensaje2').hide();
+          }
+          if(!(rut.length<=11 && rut.length >=11 )) {
+            $('#mensaje3').show();
+          }else{
+            $('#mensaje3').hide();
+          }
+          if(!(texto.length<=50 && texto.length >=1 )) {
+            $('#mensaje4').show();
+          }else{
+            $('#mensaje4').hide();
+          }
+        });
+      });
+    </script>
 
-
-
-
-      
-    
-
-
-   
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
-
-    
   </body>
 </html>

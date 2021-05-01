@@ -1,0 +1,226 @@
+{% extends 'inicio.html' %}
+{% block titulo %}
+{%  endblock %}
+{% block contenido%}
+<div class="container">
+  <div class="row">
+    <div class="col-3"></div>
+    <div class="col-4" >
+      <div class="card" style="width: 65%; border-radius:10%; margin-top:50% ; opacity: 85%;">
+        <img src="../static/img/user-login.png" class="card-img-top" style="width:60%; margin-left: 20%; margin-top: 10%; ">
+        <div class="card-body">
+          <h6>¿Ingresar como cliente?</h6>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#cliente">
+            Ingresar
+          </button>
+        </div>
+      </div>
+      <br/>
+      <div class="card" style="width: 65%; border-radius:10%; margin-top: 10%; opacity: 90%;">
+        <img src="../static/img/user-login.png" class="card-img-top" style="width:60%; margin-left: 20%; margin-top: 10%; ">
+        <div class="card-body">
+          <h6>¿Ingresar como Supervisor?</h6>
+          <button  type="button" class="btn btn-primary" data-toggle="modal" data-target="#supervisor">
+            Ingresar 
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="cliente" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form action="{% url 'logeandocliente'%}" method="POST"  id = "formu_cli" >
+              {% csrf_token %}
+                <h2 style="text-align:center;">Inicio de sesión</h2>
+                <div class="form-group">
+                  <b><label for="text">Nombre de usuario</label></b>
+                  <input type="text" class="form-control" id="email" name="usuario" placeholder="Ingrese nombre de usuario" required> 
+                </div>
+                <div class="form-group">
+                  <b><label for="clave">Contraseña</label></b>
+                  <input type="password" class="form-control" name="clave" id="clave" placeholder="Contraseña" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-lg btn-block">Iniciar sesión</button>
+                <div style="margin-left: 27%; margin-top: 2%;">
+                  <a href="">¿Olvidaste tu contraseña?</a>
+                </div>
+                <br/>
+                <a type="button" class="btn btn-success btn-lg btn-block"  data-toggle="modal" data-target="#ventana-modal"style="margin-bottom: 5%;">Crear cuenta</a>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="ventana-modal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog" >
+      <div class="modal-content" >
+        <form  action="{% url 'registrandocliente' %}" method="POST"id="form-reg">
+          {% csrf_token %}
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel" style="margin-left: 20%;">Registrarte como Cliente</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="nombre-reg"></label>
+                <input type="text" class="form-control" name="nombre" id="nombre-reg" placeholder="Nombre" required>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="apellido-reg"></label>
+                <input type="text" class="form-control"  id="apellido-reg" placeholder="Apellido" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="email-reg"></label>
+              <input type="email" class="form-control" name="email" id="email-reg" placeholder="correo electrónico" required>
+            </div>
+            <div class="form-group">
+              <label for="contraseña-reg"></label>
+              <input type="password" class="form-control" name="clave2" id="clave-reg" placeholder="Contraseña" required>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-4">
+                <label for="ciudad-reg"></label>
+                <input type="text" class="form-control"  id="ciudad-reg" placeholder="Ciudad" required>
+              </div>
+              <div class="form-group col-md-4">
+                <label for="region-reg"></label>
+                <select id="region-reg" class="form-control" required>
+                  <option selected>Elegir Region</option>
+                  <option><li>Metropolitana</li></option>
+                  <option><li>Valparaiso</li></option>
+                  <option><li>O'Higgins</li></option>
+                  <option><li>Concepción</li></option>
+                </select>
+              </div>
+              <div class="form-group col-md-4">
+                <label for="cod-reg"></label>
+                <input type="text" class="form-control"  id="cod-reg" placeholder="Codigo postal" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="edad-reg"></label>
+              <input type="date" class="form-control"  id="edad-reg" placeholder="Ingresa tu edad" required>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            <button type="submit" class="btn btn-primary">Validar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="supervisor" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form  action="{% url 'logeandosupervisor'%}" method="POST"  id = "formu_super" >
+              {% csrf_token %}
+                <br/>
+                <h2 style="text-align:center;">Inicio de sesión</h2>
+                <div class="form-group">
+                  <b><label for="name">Nombre de usuario supervisor</label></b>
+                  <input type="text" class="form-control" name="supervisor" id="name" placeholder="Nombre de usuario supervisor"required>
+                </div>
+                <div class="form-group">
+                  <b><label for="clave">Contraseña</label></b>
+                  <input type="password" class="form-control" name="clave2" id="clave" placeholder="Contraseña" required>
+                </div>
+                <div class="form-group">
+                  <b><label for="cod">Codigo Trabajador</label></b>
+                  <input type="number" class="form-control" id="cod" name="codigo" placeholder="Codigo Trabajador" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-lg btn-block">Iniciar sesión</button>
+                <div style="margin-left: 27%; margin-top: 2%;">
+                  <a href="">¿Olvidaste tu contraseña?</a>
+                </div>
+                <br/>
+                <a type="button" class="btn btn-success btn-lg btn-block" data-toggle="modal" data-target="#ventana-modal-2" style="margin-bottom: 5%;">Crear cuenta</a>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="ventana-modal-2" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog" >
+      <div class="modal-content" >
+        <form  action="{% url 'registrandosupervisor' %}" method="POST"id="form-reg">
+          {% csrf_token %}
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel;" style="margin-left: 20%;">Registrarte como Supervisor</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="nombre-reg-2"></label>
+                <input type="text" class="form-control" name="usuario" id="nombre-reg-2" placeholder="Nombre" required>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="apellido-reg-2"></label>
+                <input type="text" class="form-control" id="apellido-reg-2" placeholder="Apellido" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="email-reg-2"></label>
+              <input type="email" class="form-control" name="email" id="email-reg-2" placeholder="Correo electrónico" required>
+            </div>
+            <div class="form-group">
+              <label for="contraseña-reg-2"></label>
+              <input type="password" class="form-control" name="password2" id="clave-reg-2" placeholder="Contraseña" required>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-4">
+                <label for="ciudad-reg-2"></label>
+                <input type="text" class="form-control" id="ciudad-reg-2" placeholder="Ciudad" required>
+              </div>
+              <div class="form-group col-md-4">
+                <label for="region-reg-2"></label>
+                <select id="region-reg" class="form-control" required>
+                  <option selected>Elegir Region</option>
+                  <option><li>Metropolitana</li></option>
+                  <option><li>Valparaiso</li></option>
+                  <option><li>O'Higgins</li></option>
+                  <option><li>Concepción</li></option>
+                </select>
+              </div>
+              <div class="form-group col-md-4">
+                <label for="cod-reg-2"></label>
+                <input type="text" class="form-control" id="cod-reg-2" placeholder="Codigo postal" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="edad-reg-2"></label>
+              <input type="date" class="form-control" id="edad-reg-2" placeholder="Ingresa tu edad" required>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            <button type="submit" class="btn btn-primary">Validar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{%  endblock %}
+{% block scripts  %}
+{%  endblock %}

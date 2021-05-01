@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="../CSS/css.css">
+    <title>Hello, world!</title>
+  </head>
+  <body>
+    <div class="container" style="background-color: white;width: 60%; height:0%;">
+    <h1>Api de clima </h1>
+    <table class="table" id="Clima">
+      <thead>
+        <tr>
+          <th scope="col" >Codigo</th>
+          <th scope="col" >Estacion</th>
+          <th scope="col" >Hora</th>
+          <th scope="col" >Temperatura</th>
+          <th scope="col" >Humedad </th>
+          <th scope="col" >Estado</th>
+          <th scope="col" >Icono</th>
+          <th scope="col" >Icono</th>
+        </tr>
+      </thead>
+    </table>
+
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+          $.get("https://api.gael.cloud/general/public/clima","https://freegeoip.app/json/",
+          function(data){
+          $.each(data,function(i,item){
+          $("#Clima").append("<tr><td>"+item.Codigo+"</td><td>"+item.Estacion+"</td><td>"+item.HoraUpdate+
+            "</td><td>"+item.Temp+"</td><td>"+item.Humedad+"</td><td>"+item.Estado+"</td><td>"+item.Icono+"</td><td>"+item.Ciudad+"</td></tr>");
+          });
+          });
+        });
+    </script>
+        
+
+  </body>
+</html>

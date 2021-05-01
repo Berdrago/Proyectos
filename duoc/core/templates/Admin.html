@@ -1,0 +1,186 @@
+{% extends 'home.html' %}
+{% load static %}
+{% block titulo %}
+{%  endblock %}
+
+{% block contenido%}
+<div style="background-color: white;">
+</div>
+<div class="row " style="color: white; text-align: center;">
+<h1 >Listado de Productos </h1>
+<h6 style="color: white;"> Agregar Producto <img   class="logo"  data-bs-toggle="modal" data-bs-target="#agregar"  src="{% static 'iconos/mas.gif ' %}" width="5%" height="60%" alt=""></h6>
+<div class="row" style="color: white;">
+<table border= 1 > 
+<tr>
+    <td><h3> #</h3></td>
+    <td > <h3>Nombre</h3></td>
+    <td> <h3>Fabricante</h3></td>
+    <td> <h3>Componente</h3></td>
+    <td> <h3>Precio</h3></td>
+    <td> <h3>Stock</h3></td>
+</tr>
+{% for ve in producto %}
+<tr>
+    <td> <h3>{{ve.idProducto}} </h3> </td>
+    <td><h3> {{ve.nombreProducto}}</h3></td>
+    <td><h3>{{ve.fabricante}} </h3></td>
+    <td><h3>{{ve.componente}} </h3></td>
+    <td><h3>{{ve.precio}} </h3></td>
+    <td><h3> {{ve.stock}}</h3></td>
+    <td> <input type="submit" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#editar"   value="Editar"> </td>
+    <td> <input type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#imagen"   value="Imagen"></td>
+    <td> <input type="submit" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#eliminar"  value="Eliminar"> </td>
+</tr>
+
+<div class="modal fade" id="editar{{producto.idProducto}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">  
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Editar Producto : {{producto.idProducto}}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="{% url 'ModificarProducto' %}" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label">Id del producto</label>
+                        <input type="number" class="form-control" id="nombre" name="idProducto" value="{{producto.idProducto}}" placeholder="Id del producto" readonly>
+                    </div>
+    
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label">Nombre del producto</label>
+                        <input type="text" class="form-control" id="nombre" name="nombre" value="{{producto.nombreProducto}}" placeholder="Ingrese el nombre del producto">
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="fabricante" class="form-label"> Fabricante</label> 
+                        <select class="form-select" name="fabricante" id="fabricante">
+                            {% for fabricante in fabricantes %}
+                                {% if fabricante == productos.fabricante.idProducto %}
+                                    <option value="{{fabricante.idFabricantes}}" selected>{{fabricante.nombreFabricante}}</option>
+                                {% else %}
+                                    <option value="{{fabricante.idFabricantes}}">{{fabricante.nombreFabricante}}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    </div>
+    
+                    <div class="mb-3">
+                        <label for="formFile" class="form-label">Imagen</label>
+                        <input class="form-control" type="file" id="formFile" name="imagen">
+                    </div>
+    
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-success" style="width: 100%; margin-top: 50px;">Registrar</button>
+                    </div>
+    
+                    <div class="mb-3">
+                        <button type="reset" class="btn btn-danger" style="width: 100%;">Limpiar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="eliminar{{producto.idProducto}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Eliminar producto : {{producto.idProducto}}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ¿Esta seguro de querer eliminar este producto?
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-danger" href="{% url 'EliminarProducto' producto.idProducto %}" role="button">Eliminar</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="imagen" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal-dialog">
+    <div class="modal-content">
+    <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+        {% for producto in productos %}
+        <div class="col-3">
+          <div class="card" style="width: 100%; margin-bottom: 20px;  ">  
+            <a href="#">
+              <img  src="/static/media/{{producto.imagen}}"  class="card-img-top"  alt="Producto"> 
+            </a>
+          </div>
+        </div>
+        {% endfor %} 
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Understood</button>
+    </div>
+    </div>
+</div>
+</div>
+{% endfor %}
+  <div class="modal fade" id="agregar" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="container">
+                <div class="row justify-content-md-center">
+                    <div class="col-6 border rounded" style="margin-top: 50px;">
+                        <form action="{% url 'Admin' %}" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <h1 class="text-center p-3">Formulario de registro</h1>
+                            <div class="mb-3">
+                                <label for="nombre" class="form-label">Id del producto</label>
+                                <input type="number" class="form-control" id="idProducto" name="idProducto" placeholder="Ingrese el id del producto">
+                            </div>
+            
+                            <div class="mb-3">
+                                <label for="nombre" class="form-label">Nombre</label>
+                                <input type="text" class="form-control" id="nombreProducto" name="nombreProducto" placeholder="Ingrese el nombre del producto">
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="raza" class="form-label">Fabricante</label>
+                                <select class="form-select" name="raza" id="raza">
+                                    {% producto in producto %}
+                                        <option value="{{producto.idProducto}}">{{producto.nombreProducto}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+            
+                            <div class="mb-3">
+                                <label for="formFile" class="form-label">Imagen</label>
+                                <input class="form-control" type="file" id="formFile" name="imagen">
+                            </div>
+            
+                            <div class="mb-3">
+                                <button type="submit" class="btn btn-success" style="width: 100%; margin-top: 50px;">Registrar</button>
+                            </div>
+            
+                            <div class="mb-3">
+                                <button type="reset" class="btn btn-danger" style="width: 100%;">Registrar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{%  endblock %}
+
+
+
+
+    

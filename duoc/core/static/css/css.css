@@ -1,0 +1,77 @@
+body{
+    background-image: url("../img/backgroud.jpg");
+    background-repeat: no-repeat center center fixed;
+    background-size: cover ;
+    
+}
+
+.logo{
+    border-top-left-radius: 50% 50%;
+    border-top-right-radius: 50% 50%;
+    border-bottom-right-radius: 50% 50%;    
+    border-bottom-left-radius: 50% 50%;
+  }
+  .nombres{
+    color: orangered;
+    font-size: 40px;
+}
+.nombres:hover{
+    font-size: 40px;
+    color: black;
+}
+.nombre{
+    color:transparent;
+    text-decoration:none;
+}
+.nombre:hover{
+    color:white;
+    
+}
+
+.centrado{
+    text-align:center;
+    
+}
+.nombres2{
+    color:green;
+    text-decoration:none;
+}
+.nombres2:hover{
+    color:white;
+    
+}
+.img{
+    display:block;
+    margin:auto;
+  
+}
+
+.img2{
+    display:block;
+    margin:auto;
+    height: 100vh;
+    padding: 100px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+
+}
+
+
+.nombres{
+    color:blue;
+    text-decoration:none;
+}
+.nombres:hover{
+    color:black;
+    
+}
+.botones{
+    text-align: center;
+    margin: 10px;
+    width:70px;
+    height:25px;
+   
+}
+
+
